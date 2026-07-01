@@ -32,6 +32,7 @@ of work that makes one stale.
 | Document | Purpose | Update when… |
 |---|---|---|
 | `CLAUDE.md` (this file) | Stable overview, layout, conventions, env | Architecture, conventions, deps, or layout change |
+| `docs/ROADMAP.md` | Live progress tracker | A milestone starts or lands; focus or plan changes |
 | `docs/dev/DECISIONS.md` | Dated log of locked decisions | A decision is made, changed, or superseded |
 | `docs/dev/WORKFLOW.md` | How Claude Chat + Claude Code coordinate via the repo | The two-surface process or division of labor changes |
 | `README.md` | Public-facing summary + setup | User-facing setup or scope changes |
