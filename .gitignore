@@ -1,0 +1,19 @@
+# Minimal, language-agnostic ignores. Add stack-specific entries per project.
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+
+# Environment / secrets
+.env
+.venv/
+venv/
+
+# Logs / temp
+*.log
+tmp/
