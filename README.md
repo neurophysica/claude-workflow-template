@@ -9,6 +9,14 @@ The repository is the **shared memory** between them: durable state lives in fil
 either conversation. This template ships the bare-minimum scaffolding to establish that
 bridge, with no project-specific content.
 
+## See it in action
+
+**[neurophysica/claude-workflow-example](https://github.com/neurophysica/claude-workflow-example)**
+is a worked example built from this template: a tiny unit-converter CLI created one spec at a
+time. Its [`WALKTHROUGH.md`](https://github.com/neurophysica/claude-workflow-example/blob/main/WALKTHROUGH.md)
+narrates the full design→spec→execute→review→commit loop, and each step is a git tag
+(`step_01`…`step_03`) you can diff.
+
 ## What's in here
 
 | Path | Purpose |
