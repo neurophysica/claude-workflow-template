@@ -17,3 +17,8 @@ venv/
 # Logs / temp
 *.log
 tmp/
+
+# Stack-specific ignores go here (see the README customize checklist). For example:
+#   Python:  __pycache__/   *.py[cod]   .pytest_cache/
+#   Node:    node_modules/   *.tsbuildinfo
+#   Rust:    /target
