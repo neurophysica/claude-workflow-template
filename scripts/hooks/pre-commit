@@ -1,0 +1,47 @@
+#!/bin/bash
+cd "$(git rev-parse --show-toplevel)"
+
+# Approval gate: commit only when the human has created .git/APPROVED.
+if [ ! -f .git/APPROVED ]; then
+  printf '\033[31mCOMMIT BLOCKED: no .git/APPROVED marker. Human must approve first.\033[0m\n'
+  exit 1
+fi
+
+# CLAUDE.md must carry no unfilled template placeholders. This template repo itself keeps
+# FILL IN markers by design, so its maintainer commits with ALLOW_TEMPLATE_PLACEHOLDERS=1.
+# Real projects leave that unset, so the gate stays active for them.
+if [ -z "$ALLOW_TEMPLATE_PLACEHOLDERS" ] && grep -rq "FILL IN" CLAUDE.md; then
+  printf '\033[31mCOMMIT BLOCKED: CLAUDE.md still has FILL IN placeholders. Fill them in, or set ALLOW_TEMPLATE_PLACEHOLDERS=1 for the template repo itself.\033[0m\n'
+  exit 1
+fi
+
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks protect --staged --no-banner
+  if [ $? -ne 0 ]; then
+    printf '\033[31mCOMMIT BLOCKED: gitleaks found a potential secret in staged changes.\033[0m\n'
+    exit 1
+  fi
+else
+  printf '\033[33mWARNING: gitleaks not installed, secret scan skipped.\033[0m\n'
+fi
+
+DUPES=$(grep -oP '^topic: \K.*' docs/dev/DECISIONS.md 2>/dev/null | sort | uniq -d)
+if [ -n "$DUPES" ]; then
+  printf '\033[31mCOMMIT BLOCKED: duplicate active decision topic(s):\n%s\033[0m\n' "$DUPES"
+  exit 1
+fi
+
+# All gates passed. Refresh sync markers on any staged living doc, then consume the approval
+# marker last so a failed gate above leaves .git/APPROVED intact and the commit is retryable.
+LIVING="CLAUDE.md docs/ROADMAP.md docs/dev/DECISIONS.md docs/dev/WORKFLOW.md"
+for f in $LIVING; do
+  if git diff --cached --name-only | grep -q "^${f}$"; then
+    SHA=$(git rev-parse HEAD)
+    DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    sed -i "1s|.*sync:.*|<!-- sync: sha=${SHA} date=${DATE} -->|" "$f"
+    git add "$f"
+  fi
+done
+
+rm .git/APPROVED
+exit 0

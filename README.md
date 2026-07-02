@@ -34,6 +34,17 @@ narrates the full design→spec→execute→review→commit loop, and each step 
 2. Clone the new repo and work through the customize checklist below.
 3. Point Claude Code at the repo; it reads `CLAUDE.md` on its first turn.
 
+After cloning on Windows, install the pre-commit hook from Git Bash:
+
+```bash
+cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+```
+
+The hook blocks commits until you approve them (create `.git/APPROVED` first) and until
+`CLAUDE.md` has no `FILL IN` placeholders left. While iterating on this template itself —
+before those placeholders are filled — commit with `ALLOW_TEMPLATE_PLACEHOLDERS=1 git commit`;
+all other gates (secret scan, decision-topic check, sync-marker refresh) still run.
+
 ## Customize checklist (after creating a repo from this template)
 
 - [ ] `CLAUDE.md` — fill every `<!-- FILL IN -->`: what the project is, layout, environment, conventions.

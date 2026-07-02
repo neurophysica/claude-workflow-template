@@ -1,3 +1,4 @@
+<!-- sync: sha=279212b59fa10b767538651bf6a1c5bc4e2eef03 date=2026-07-02T09:22:10Z -->
 # Workflow — how the two surfaces coordinate
 
 This project spans two surfaces:

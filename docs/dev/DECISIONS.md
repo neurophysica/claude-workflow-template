@@ -1,7 +1,12 @@
+<!-- sync: sha=279212b59fa10b767538651bf6a1c5bc4e2eef03 date=2026-07-02T09:22:10Z -->
 # Decision log
 
 Locked project decisions, so neither surface (Claude Chat, Claude Code) re-litigates them.
 Newest entries at the top, each dated `YYYY-MM-DD`. Entry format: **Decision** / **Rationale**.
+Each entry must start with a metadata line: `topic: <slug>` and, when it replaces an earlier
+entry, `supersedes: <date of the entry it replaces>`. Slugs are short and stable, e.g.
+`git-signoff`, `spec-persistence`. Two active (non-superseded) entries must never share a topic
+slug.
 When a decision is revisited, add a new dated entry that supersedes the old one rather than
 editing history.
 

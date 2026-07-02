@@ -22,3 +22,6 @@ tmp/
 #   Python:  __pycache__/   *.py[cod]   .pytest_cache/
 #   Node:    node_modules/   *.tsbuildinfo
 #   Rust:    /target
+*.env
+*secrets*
+*credentials*

@@ -1,3 +1,4 @@
+<!-- sync: sha=b720739e476627fb8ca53957147c4458335ea94a date=2026-07-02T09:22:10Z -->
 # Roadmap
 
 Living progress tracker. **Update the status boxes as work lands** so any session — Chat or

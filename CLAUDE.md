@@ -1,28 +1,27 @@
+<!-- sync: sha=b720739e476627fb8ca53957147c4458335ea94a date=2026-07-02T09:22:10Z -->
 # CLAUDE.md
 
 Guidance for Claude Code (and humans) working in this repo. Read this first each session.
 
-<!-- Created from claude-workflow-template. Fill in every <!-- FILL IN --> below, then delete this line. -->
-
 ## What this project is
 
-<!-- FILL IN: one or two paragraphs — what the project is, its goal, and its main deliverables. -->
+<!-- FILL IN: one paragraph, what the project does and who it's for -->
 
 ## Layout
-
-<!-- FILL IN: the directory layout and what lives where. -->
 
 Durable dev-process state lives under `docs/dev/` — see [WORKFLOW.md](docs/dev/WORKFLOW.md)
 (how the two Claude surfaces coordinate) and [DECISIONS.md](docs/dev/DECISIONS.md) (locked
 decisions).
 
+<!-- FILL IN: describe any other top-level directories specific to this project -->
+
 ## Conventions
 
-<!-- FILL IN: project-specific conventions (style, testing, structure, naming). -->
+<!-- FILL IN: language/framework conventions, naming, style, testing approach -->
 
 ## Environment
 
-<!-- FILL IN: how to set up and run the project (language, package manager, how to run tests). -->
+<!-- FILL IN: how to install deps and run this project locally -->
 
 ## Living documents (keep in sync as we work)
 
@@ -36,6 +35,23 @@ of work that makes one stale.
 | `docs/dev/DECISIONS.md` | Dated log of locked decisions | A decision is made, changed, or superseded |
 | `docs/dev/WORKFLOW.md` | How Claude Chat + Claude Code coordinate via the repo | The two-surface process or division of labor changes |
 | `README.md` | Public-facing summary + setup | User-facing setup or scope changes |
+
+## Spec execution
+
+Do not report a spec complete unless every Acceptance Criteria item is checked off with evidence:
+a command, a diff, or test output. If a spec under docs/dev/specs/ is missing Acceptance Criteria
+or Definition of Done, stop and ask the human to send it back to Chat for completion. Do not infer
+missing acceptance criteria and proceed on judgment call.
+
+Do not delete a spec after completing it. Set its status to done and leave it in place as a
+provenance record.
+
+## Secrets and sensitive data
+
+Never include in specs, decision entries, roadmap items, or commit messages: IP addresses,
+hostnames, API tokens, SSH key paths, account IDs, or credentials of any kind. Reference
+infrastructure by role, not by address. If a value must be recorded, it goes in a local,
+gitignored file, never in a tracked doc.
 
 ## Git conventions
 
